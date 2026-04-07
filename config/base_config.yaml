@@ -1,0 +1,5 @@
+# base_config.yaml
+env_name: "CustomOpenEnv"
+seed: 42
+max_steps: 1000
+rendeer_mode: "human"

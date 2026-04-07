@@ -1,39 +1,33 @@
 """
-Utilities Module
-This module provides shared helper functions and classes across the application.
+Utils Package
+A collection of helper modules for [Project Name].
 """
 
-# Import specific functions from sub-modules to expose them at the package level
-try:
-    from .helpers import (
-        format_date,
-        clean_string,
-        slugify
-    )
-except ImportError:
-    format_date = None
-    clean_string = None
-    slugify = None
+__version__ = "0.1.0"
 
+# 1. Flatten the API: Expose main functions from sub-modules
+# This allows "from utils import helper_func" instead of 
+# "from utils.helpers import helper_func"
 try:
-    from .validators import validate_email, validate_config
-except ImportError:
-    validate_email = None
-    validate_config = None
+    from .helpers import format_timestamp, slugify_text
+    from .validators import is_valid_email, validate_config
+    from .logger import get_logger
+except ImportError as e:
+    # Optional: Log the error or handle missing dependencies
+    # This prevents the whole app from crashing if one utility has a missing requirement
+    print(f"Warning: Some utilities could not be loaded: {e}")
 
-try:
-    from .logger import setup_custom_logger
-except ImportError:
-    setup_custom_logger = None
-
-# Define what is accessible when someone uses 'from utils import *'
+# 2. Define the public API for the package
+# This controls what is exported when someone runs 'from utils import *'
 __all__ = [
-    'format_date',
-    'clean_string',
-    'slugify',
-    'validate_email',
+    'format_timestamp',
+    'slugify_text',
+    'is_valid_email',
     'validate_config',
-    'setup_custom_logger'
+    'get_logger'
 ]
 
-__version__ = "1.0.0"
+# 3. Initialization Logic (Optional)
+# This code runs the first time the package is imported
+_logger = get_logger(__name__)
+_logger.debug("Utils package initialized successfully.")

@@ -24,7 +24,26 @@ The agent starts at position `(0,0)` and tries to reach a goal position in a gri
 
 ## 🏗️ Project Structure
 
-
+openenv-hackathon/
+├── README.md
+├── requirements.txt
+├── config/
+│   ├── base_config.yaml
+│   └── env_config.yaml
+├── src/
+│   ├── envs/
+│   │   ├── custom_env.py
+│   │   └── utils.py
+│   ├── agents/
+│   │   └── simple_agent.py
+│   ├── training/
+│   │   ├── trainer.py
+│   │   └── logger.py
+│   └── utils/
+│       └── helpers.py
+├── tests/
+│   ├── test_env.py
+│   └── test_agent.py
 └── notebooks/
     └── prototype.ipynb
 

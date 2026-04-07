@@ -1,0 +1,37 @@
+# OpenEnv Environment Manifest
+spec_version: "1"
+
+# Basic Metadata
+name: "structural-safety-twin"
+version: "1.0.0"
+description: "Smart Digital Twin for Structural Health Monitoring and Safety Assessment."
+author: "Computer Engineering Dept, S.B. Patil"
+
+# Runtime Configuration
+runtime:
+  type: "python"
+  version: "3.14"
+  # Entry point for your environment logic
+  app: "server/environment.py"
+  port: 8000
+
+# API & Interaction Spec
+api_spec:
+  # Gymnasium-compatible interface
+  interface: "gymnasium"
+  # Define if your environment uses specific protocols like MCP
+  protocol: "mcp" 
+  render_modes: ["human", "rgb_array"]
+
+# Deployment & Hardware
+deployment:
+  # Change to your Hugging Face username
+  repo_id: "your-username/structural-safety-twin"
+  hardware: "cpu-upgrade"  # Use 'cpu-upgrade' or 'gpu-t4' for heavy simulations
+  sdk: "docker"
+
+# Scaling Limits
+scaling:
+  max_concurrent_envs: 5
+  timeout_seconds: 3600
+  workers: 4
